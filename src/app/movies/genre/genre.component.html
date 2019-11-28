@@ -1,0 +1,40 @@
+<mat-tab-group (selectedTabChange)="getGenreId($event)">
+  <mat-tab
+    *ngFor="let g of genres"
+    label="{{g.name | titlecase}}"
+  >
+
+    <div class="card-container">
+      <div class="mat-card" *ngFor="let m of movies">
+        <div class="poster">
+          <img src="https://image.tmdb.org/t/p/w200/{{m.poster_path || m.backdrop_path}}" alt="Постер не найден">
+        </div>
+        <div class="description">
+          <h3 class="card-title">{{m.title || m.original_title}}</h3>
+          <div class="description-text" *ngIf="m.overview; else no_overview">{{m.overview}}</div>
+          <ng-template #no_overview>Описание не найдено</ng-template>
+          <div class="footer">
+            <div class="strip"></div>
+            <button mat-button id="{{m.id}}" (click)="sendToDetails($event)">Подробнее</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </mat-tab>
+</mat-tab-group>
+
+<div class="paginator" *ngIf="totalPagesArr.length">
+  <div class="paginator-clickables" (click)="toStart()">Начало</div>
+  <div class="paginator-clickables" (click)="toLeft()">&nbsp; &lt; &nbsp;</div>
+  <div class="paginator-page-link">
+    <div class="paginator-page-link-content" id= "{{p}}" (click)="getPageNumber($event)" *ngFor="let p of totalPagesArr">
+      <div class="paginator-page-link-content-button paginator-clickables">{{ p }}</div>
+    </div>
+  </div>
+  <div class="paginator-clickables" (click)="toRight()">&nbsp; &gt; &nbsp;</div>
+  <div class="paginator-clickables" (click)="toEnd()">Конец</div>
+</div>
+<br><br>
+<div class="to-top" (click)="toTop()">Наверх</div>
+

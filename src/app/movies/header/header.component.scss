@@ -1,0 +1,19 @@
+.tmdb {
+  width: 100px;
+  height: 40px;
+  background-image: url('../../../assets/images/tmdb-logo.png');
+  background-size: cover;
+}
+mat-toolbar {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  z-index: 999;
+  button {
+    margin-left: 100px;
+  }
+}
+.is-active {
+  background-color: darken(#F5F5F5, 10%);
+}

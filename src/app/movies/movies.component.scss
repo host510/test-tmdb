@@ -1,0 +1,28 @@
+.cinema {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  background-image: url('../../assets/images/cinema.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  opacity: 0.4;
+}
+
+.content {
+  height: fit-content;
+  background: #fff;
+  z-index: 11;
+}
+.disclaimer {
+  position: fixed;
+  bottom: 5px;
+  left: 20px;
+  color: #fff;
+  padding: 3px;
+  background-color: green;
+  z-index: 999;
+}
+
+

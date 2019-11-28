@@ -1,0 +1,149 @@
+.mat-tab-group {
+  position: absolute;
+  margin-top: 65px;
+
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-left: -50px;
+
+    .mat-card {
+      width: 550px;
+      height: 270px;
+      margin: 50px;
+
+      .poster {
+        float: left;
+        width: 35%;
+        height: 100%;
+
+
+        img {
+          max-width: 100%;
+          max-height: 100%;
+        }
+      }
+
+      .description {
+        position: relative;
+        float: left;
+        width: 63%;
+        height: 100%;
+        overflow: hidden;
+        padding: 0 5px;
+
+        .card-title {
+          height: 10%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .description-text {
+          overflow: hidden;
+          position: relative;
+          line-height: 1em;
+          max-height: 8em;
+          text-align: justify;
+          padding-right: 1em;
+        }
+
+        .description-text:before {
+          content: '...';
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+
+        .description-text:after {
+          content: '';
+          position: absolute;
+          right: 0;
+          width: 1em;
+          height: 1em;
+          margin-top: 0.2em;
+          background: white;
+        }
+
+        .footer {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          bottom: 0;
+          width: 100%;
+          height: 20%;
+
+          .strip {
+            position: absolute;
+            top: 0;
+            margin-left: -30px;
+            width: 110%;
+            height: 1px;
+            background: #dcdcdc;
+          }
+        }
+      }
+    }
+  }
+}
+
+.paginator {
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 450px;
+  bottom: 5px;
+  right: 100px;
+  padding: 3px 5px;
+  background: #DCDCDC;
+  z-index: 999;
+
+  &-clickables {
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+
+    &:hover {
+      cursor: pointer;
+      background: lighten(#000, 50%);
+      color: #fff;
+    }
+  }
+
+  &-page-link {
+    display: flex;
+    flex-direction: row;
+    width: 280px;
+    height: 20px;
+    overflow: hidden;
+
+    &-content {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%;
+
+      &-button {
+        width: 40px;
+      }
+    }
+  }
+}
+
+.to-top {
+  position: fixed;
+  bottom: 5px;
+  right: 15px;
+  color: #000;
+  padding: 3px;
+  background-color: #DCDCDC;
+  font-weight: bold;
+  z-index: 999;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+

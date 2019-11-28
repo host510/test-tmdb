@@ -1,0 +1,39 @@
+<div class="page">
+  <div class="for-details">
+
+      <div class="for-details-image">
+        <img src="https://image.tmdb.org/t/p/w300/{{movie.poster_path || movie.backdrop_path}}" alt="Постер не найден">
+      </div>
+      <div class="for-details-overview">
+        <h2>{{ movie.title }}</h2>
+        <h3>Обзор</h3>
+        <div class="for-details-overview-text">{{ movie.overview }}</div>
+        <h3>Постановщики</h3>
+        <div class="for-details-directors">
+          <div *ngFor="let d of directors">
+            <div class="for-details-overview-directors-director-name">{{ d[0] }}</div>
+            <div>{{ d[1] }}</div>
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+  <h3 style="margin-left: 30px;">В ролях</h3>
+  <div class="actors">
+    <div class="actors-actor-card" *ngFor="let c of cast">
+      <div class="actors-actor-card-image">
+        <img src="https://image.tmdb.org/t/p/w200/{{c.profile_path}}" alt="Постер не найден">
+      </div>
+      <div class="actors-actor-card-bottom">
+        <div class="actors-actor-card-bottom-name">
+          <h4>{{ c.name }}</h4>
+          <span>{{ c.character }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+</div>
+
+
