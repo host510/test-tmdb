@@ -25,16 +25,18 @@
 </mat-tab-group>
 
 <div class="paginator" *ngIf="totalPagesArr.length">
-  <div class="paginator-clickables" (click)="toStart()">Начало</div>
-  <div class="paginator-clickables" (click)="toLeft()">&nbsp; &lt; &nbsp;</div>
+  <div class="paginator-clickables" id="start" (click)="toEdge($event)">Начало</div>
+  <div class="paginator-clickables" id="left" (click)="shiftPageLinks($event)">&nbsp; &lt; &nbsp;</div>
   <div class="paginator-page-link">
     <div class="paginator-page-link-content" id= "{{p}}" (click)="getPageNumber($event)" *ngFor="let p of totalPagesArr">
       <div class="paginator-page-link-content-button paginator-clickables">{{ p }}</div>
     </div>
   </div>
-  <div class="paginator-clickables" (click)="toRight()">&nbsp; &gt; &nbsp;</div>
-  <div class="paginator-clickables" (click)="toEnd()">Конец</div>
+  <div class="paginator-clickables" id="right" (click)="shiftPageLinks($event)">&nbsp; &gt; &nbsp;</div>
+  <div class="paginator-clickables" id="end" (click)="toEdge($event)">Конец</div>
 </div>
 <br><br>
 <div class="to-top" (click)="toTop()">Наверх</div>
+
+
 
