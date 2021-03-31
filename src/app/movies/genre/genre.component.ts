@@ -65,9 +65,9 @@ export class GenreComponent implements OnInit {
     this._apiService.get(`genre/${id}/movies`)
       .subscribe((res) => {
           this.totalPages = +res.total_pages;
+          this.makeTotalPagesArr(this.totalPages);
         }
       )
-    this.makeTotalPagesArr(this.totalPages);
   }
 
   private makeTotalPagesArr(total):void {
@@ -83,37 +83,50 @@ export class GenreComponent implements OnInit {
     });
   }
 
-  public toRight():void {
+  public shiftPageLinks(event) {
     const element = document.querySelector('.paginator-page-link-content') as HTMLElement;
     const pos = element.style.marginLeft.indexOf('p');
-    const style = +element.style.marginLeft.slice(0, pos);
-    if(style <= -this.totalPages * 40) {
-      element.style.marginLeft = `-${this.totalPages * 40}px`;
-    } else {
-      element.style.marginLeft = `${style - 280}px`;
+    const margin = +element.style.marginLeft.slice(0, pos);
+    switch(true) {
+      case margin <= (-this.totalPages * 40) + 280 && event.currentTarget.id === 'right':
+        element.style.marginLeft = `${-this.totalPages * 40 + 280}px`;
+        break;
+      case margin >= (-this.totalPages * 40) + 280 && event.currentTarget.id === 'right':
+        element.style.marginLeft = `${margin - 280}px`;
+        break;
+      case margin === 0 && event.currentTarget.id === 'left':
+        element.style.marginLeft = '0px';
+        break;
+      case margin <= 280:
+        element.style.marginLeft = `${margin + 280}px`;
+        break;
+      default: element.style.marginLeft = '0px';
     }
   }
 
-  public toLeft():void {
+  public toEdge(event):void {
     const element = document.querySelector('.paginator-page-link-content') as HTMLElement;
-    const pos = element.style.marginLeft.indexOf('p');
-    let style = +element.style.marginLeft.slice(0, pos);
-    if(style === 0) {
+    if(event.currentTarget.id === 'start') {
       element.style.marginLeft = '0px';
     } else {
-      element.style.marginLeft = `${style + 280}px`;
+      element.style.marginLeft = `-${this.totalPages * 40 - 280}px`;
     }
-
   }
 
-  public toStart():void {
-    const element = document.querySelector('.paginator-page-link-content') as HTMLElement;
-    element.style.marginLeft = '0px';
-  }
-
-  public toEnd():void {
-    const element = document.querySelector('.paginator-page-link-content') as HTMLElement;
-    element.style.marginLeft = `-${this.totalPages * 40 - 280}px`;
-  }
+  // public shiftPageLinks(event) {
+  //   const element = document.querySelector('.paginator-page-link-content') as HTMLElement;
+  //   const pos = element.style.marginLeft.indexOf('p');
+  //   const margin = +element.style.marginLeft.slice(0, pos); console.log(margin);
+  //   if(margin <= (-this.totalPages * 40) + 280 && event.currentTarget.id === 'right') {
+  //     element.style.marginLeft = `${-this.totalPages * 40 + 280}px`;
+  //   } else if(margin >= (-this.totalPages * 40) + 280 && event.currentTarget.id === 'right'){
+  //     element.style.marginLeft = `${margin - 280}px`;
+  //   } else if(margin === 0 && event.currentTarget.id === 'left') {
+  //     element.style.marginLeft = '0px';
+  //   } else if(margin <= 280) {
+  //     element.style.marginLeft = `${margin + 280}px`;
+  //   }
+  // }
 
 }
+
